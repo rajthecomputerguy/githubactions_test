@@ -1,16 +1,10 @@
 # This is a basic workflow to help you get started with Actions
 
 name: CI
-
 on:
   release:
     types: ["created"]
     
-
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -22,10 +16,28 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      - name: print
+      
+      - name: print the github variables
         run: |
-           echo ${{ github.event_name }}
-           echo ${{ github.ref }}
-           echo ${{ github.ref_name }}
+           echo this is githubeventname ${{ github.event_name }}
+           echo this is githubreference ${{ github.ref }}
+           echo this is githubrefname ${{ github.ref_name }}
+
+      - name: print the variable based on env
+        run: |
+          case ${{ github.event_name }} in 
+            release)
+              stage=${{ contains( github.ref, 'release-') && 'prod' || 'test' }}
+              mode='false'
+              ;;
+            pull_request)
+               stage=${{ contains( github.ref_name, 'main' ) && 'prod' || 'test' }}
+               mode='true'
+            push)
+               stage='test'
+               mode='true'
+               ;;
+          esac
+          echo this is the stage value $stage
            
 
