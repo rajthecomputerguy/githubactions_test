@@ -33,10 +33,11 @@ jobs:
             pull_request)
                stage=${{ contains( github.ref_name, 'main' ) && 'prod' || 'test' }}
                mode='true'
+              ;;
             push)
                stage='test'
                mode='true'
-               ;;
+              ;;
           esac
           echo this is the stage value $stage
            
