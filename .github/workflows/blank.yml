@@ -31,10 +31,6 @@ jobs:
               stage=${{ contains( github.ref, 'release-') && 'prod' || 'test' }}
               mode=${{ contains( github.ref, 'release-') && 'false' || 'true' }}
               ;;
-            *)
-              stage='test'
-              mode='true'
-              ;;
           esac
           echo this is the stage value $stage
           echo this is the mode value $mode
