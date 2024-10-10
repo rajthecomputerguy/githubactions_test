@@ -28,7 +28,7 @@ jobs:
         run: |
           case ${{ github.event_name }} in 
             release)
-              stage=${{ contains( github.ref, 'release-') && 'prod' || 'test' }}
+              stage=${{ contains( github.event.release.name, 'release-') && 'prod' || 'test' }}
               mode='false'
               ;;
             pull_request)
