@@ -22,6 +22,7 @@ jobs:
            echo this is githubeventname ${{ github.event_name }}
            echo this is githubreference ${{ github.ref }}
            echo this is githubrefname ${{ github.ref_name }}
+           echo "Release title is: ${{ github.event.release.name }}
 
       - name: print the variable based on env
         run: |
