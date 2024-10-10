@@ -29,7 +29,7 @@ jobs:
           case ${{ github.event_name }} in 
             release)
               stage=${{ contains( github.ref, 'release-') && 'prod' || 'test' }}
-              mode='false'
+              mode=${{ contains( github.ref, 'release-') && 'false' || 'true' }}
               ;;
             *)
               stage='test'
@@ -37,5 +37,6 @@ jobs:
               ;;
           esac
           echo this is the stage value $stage
+          echo this is the mode value $mode
            
 
