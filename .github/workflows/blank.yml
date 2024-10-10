@@ -28,16 +28,12 @@ jobs:
         run: |
           case ${{ github.event_name }} in 
             release)
-              stage=${{ contains( github.event.release.name, 'release-') && 'prod' || 'test' }}
+              stage=${{ contains( github.ref, 'release-') && 'prod' || 'test' }}
               mode='false'
               ;;
-            pull_request)
-               stage=${{ contains( github.ref_name, 'main' ) && 'prod' || 'test' }}
-               mode='true'
-              ;;
-            push)
-               stage='test'
-               mode='true'
+            *)
+              stage='test'
+              mode='true'
               ;;
           esac
           echo this is the stage value $stage
