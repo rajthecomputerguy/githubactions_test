@@ -3,12 +3,12 @@
 name: CI
 on:
   release:
-    types: ["created"]
+    types: ["published"]
     
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  release:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -22,7 +22,7 @@ jobs:
            echo this is githubeventname ${{ github.event_name }}
            echo this is githubreference ${{ github.ref }}
            echo this is githubrefname ${{ github.ref_name }}
-           echo "Release title is: ${{ github.event.release.name }}
+           echo "Release title is: ${{ github.event.release.name }}"
 
       - name: print the variable based on env
         run: |
