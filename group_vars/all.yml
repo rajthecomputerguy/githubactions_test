@@ -39,7 +39,7 @@ controller_credential_types:
         "template": "[general]\nhost={{ tower_cli_api_url }}"
         },
         "extra_vars":
-          "TOWER_CLI_CFG_FILE": !unsafe "{{ tower.filename }}"
-          "tower_cli_api_token": !unsafe "{ { tower_cli_api_token }}"
+          "TOWER_CLI_CFG_FILE": "{ { tower.filename }}"
+          "tower_cli_api_token": "{ { tower_cli_api_token }}"
       } }
 
