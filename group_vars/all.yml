@@ -1,0 +1,22 @@
+---
+controller_credential_types:
+  - name: AWS credentioals
+    description: Test AWS Credential
+    state: present
+    inputs:
+      fields:
+      - type: string
+        id: accesskey
+        label: access key
+        secret: true
+      - type: string
+        id: secretkey
+        label: secret key
+        secret: true
+      required:
+      - accesskey
+      - secretkey
+    injectors: 
+      extra_vars: 
+        accesskey: "[general]\nhost = \" {{ tower_cli_api_url }} \"\nverify_ssl = false\noauth_token = \"{{ tower_cli_api_token }}\""
+        secretkey: !unsafe "{{ secretkey }}"
