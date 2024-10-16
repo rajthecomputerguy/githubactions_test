@@ -47,4 +47,4 @@ jobs:
          sudo ansible-galaxy collection install -f -r ./collections/requirements.yml
 
       - name: execute the playbook
-        run: sudo ansible-playbook ${{ github.workspace }}/ansible_controller.yml
+        run: sudo ansible-playbook ${{ github.workspace }}/test.yml
