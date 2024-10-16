@@ -1,6 +1,6 @@
 ---
 controller_credential_types:
-  - name: AWS credentioals
+  - name: test credentials
     description: Test AWS Credential
     state: present
     inputs:
