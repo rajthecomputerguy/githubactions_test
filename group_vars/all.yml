@@ -18,5 +18,25 @@ controller_credential_types:
       - secretkey
     injectors: 
       extra_vars: 
-        accesskey: !unsafe "{{ mykey }}"
+        accesskey: !unsafe "{{ accesskey }}"
         secretkey: !unsafe "{{ secretkey }}"
+  - name: "controller file"
+    description: "AIP Controller cli file"
+    state: present  
+    inputs:
+      fields:
+        - id: tower_cli_api_url
+          type: string
+          label: tower_cli API URL
+        - id: tower_cli_api_token
+          type: string
+          label: tower_cli API token
+      required:
+        - tower_cli_api_url
+        - tower_cli_api_token
+    injectors:
+      file:
+        template: "[general]\nhost = {{ tower_cli_api_url }}\nverify_ssl = false\noauth_token = {{ tower_cli_api_token }}"
+        extra_vars:
+          TOWER_CLI_CFG_FILE: "{{ tower.filename }}"
+          tower_cli_api_token: "{{ tower_cli_api_token }}"
