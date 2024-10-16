@@ -34,9 +34,11 @@ controller_credential_types:
       required:
         - tower_cli_api_url
         - tower_cli_api_token
-    injectors:
-      file:
-        template: "[general]\nhost = {{ tower_cli_api_url }}\nverify_ssl = false\noauth_token = {{ tower_cli_api_token }}"
-        extra_vars:
-          TOWER_CLI_CFG_FILE: "{{ tower.filename }}"
-          tower_cli_api_token: "{{ tower_cli_api_token }}"
+    injectors: {
+      'file':
+        'template': '\"[general]\nhost = \{\{ tower_cli_api_url \}\}\nverify_ssl = false\noauth_token = \{\{ tower_cli_api_token \}\}\"'
+        },
+        'extra_vars':
+          'TOWER_CLI_CFG_FILE': "{ { tower.filename }}",
+          'tower_cli_api_token': "{ { tower_cli_api_token }}"
+        } }
